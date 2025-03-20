@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQBroker", "MQBroker\MQBroker.csproj", "{EC265385-C038-45C8-86C3-8AA0908D0A90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MQClient", "MQClient\MQClient.csproj", "{7F166FF4-8A55-4DB6-9A4F-8AD49B223F87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{9CC20643-31FC-4BDA-848C-A5CA28EBC0E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC265385-C038-45C8-86C3-8AA0908D0A90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC265385-C038-45C8-86C3-8AA0908D0A90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC265385-C038-45C8-86C3-8AA0908D0A90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC265385-C038-45C8-86C3-8AA0908D0A90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F166FF4-8A55-4DB6-9A4F-8AD49B223F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F166FF4-8A55-4DB6-9A4F-8AD49B223F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F166FF4-8A55-4DB6-9A4F-8AD49B223F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F166FF4-8A55-4DB6-9A4F-8AD49B223F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC20643-31FC-4BDA-848C-A5CA28EBC0E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC20643-31FC-4BDA-848C-A5CA28EBC0E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC20643-31FC-4BDA-848C-A5CA28EBC0E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC20643-31FC-4BDA-848C-A5CA28EBC0E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {14DF037C-7692-47D3-9BDF-4AFB92961160}
+	EndGlobalSection
+EndGlobal
