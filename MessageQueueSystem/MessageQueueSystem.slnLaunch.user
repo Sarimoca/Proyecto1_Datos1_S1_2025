@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "MQBroker\\MQBroker.csproj",
+        "Action": "Start",
+        "DebugTarget": "MQBroker"
+      },
+      {
+        "Path": "MQClient\\MQClient.csproj",
+        "Action": "Start",
+        "DebugTarget": "MQClient"
+      }
+    ]
+  }
+]

@@ -304,12 +304,8 @@ class MQBroker
         {
             while (true)
             {
-                TcpClient? client = server.AcceptTcpClient();
-                if (client == null)
-                {
-                    ThreadPool.QueueUserWorkItem(state => HandleClient((TcpClient)state!), client);
-                }
-                
+                TcpClient client = server.AcceptTcpClient();
+                ThreadPool.QueueUserWorkItem(state => HandleClient((TcpClient)state), client);
             }
         }
         catch (Exception ex)
