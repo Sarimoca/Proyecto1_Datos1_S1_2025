@@ -11,6 +11,11 @@
         "Path": "MQClient\\MQClient.csproj",
         "Action": "Start",
         "DebugTarget": "MQClient"
+      },
+      {
+        "Path": "TestApplication\\TestApplication.csproj",
+        "Action": "Start",
+        "DebugTarget": "TestApplication"
       }
     ]
   }

@@ -165,6 +165,7 @@
             button1.TabIndex = 2;
             button1.Text = "Connect";
             button1.UseVisualStyleBackColor = false;
+            button1.Click += button1_Click;
             // 
             // textBox2
             // 
@@ -172,7 +173,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 1;
-            textBox2.Text = "8080";
+            textBox2.Text = "5000";
             // 
             // textBox1
             // 
@@ -232,6 +233,7 @@
             button5.TabIndex = 2;
             button5.Text = "Recibir";
             button5.UseVisualStyleBackColor = false;
+            button5.Click += button5_Click;
             // 
             // label9
             // 
@@ -308,6 +310,7 @@
             button4.TabIndex = 2;
             button4.Text = "Publicar";
             button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // richTextBox1
             // 
@@ -351,6 +354,7 @@
             button3.TabIndex = 4;
             button3.Text = "Desuscribirse";
             button3.UseVisualStyleBackColor = false;
+            button3.Click += button3_Click_1;
             // 
             // button2
             // 
@@ -363,6 +367,7 @@
             button2.TabIndex = 3;
             button2.Text = "Suscribirse";
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click_1;
             // 
             // listView1
             // 
