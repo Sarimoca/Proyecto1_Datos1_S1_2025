@@ -399,6 +399,11 @@ class MQBroker
     {
         lock (suscriptores) // Bloqueo para evitar condiciones de carrera
         {
+
+           
+            
+
+
             // Verificar si el tema existe
             if (!suscriptores.ContainsKey(tema))
             {
@@ -408,6 +413,7 @@ class MQBroker
             // Verificar si ya está suscrito
             if (suscriptores[tema].Contains(appId))
             {
+                Console.WriteLine($"Ya está suscrito al tema: {tema}");
                 return "ERROR|Ya está suscrito al tema: " + tema;
             }
 
@@ -462,6 +468,7 @@ class MQBroker
             // Verificar si el tema existe
             if (!suscriptores.ContainsKey(tema) || suscriptores[tema].Count == 0)
             {
+                Console.WriteLine($"Mensaje ignorado - Tema: {tema}");
                 return "ERROR|No hay suscriptores para este tema: " + tema;
             }
 
@@ -498,12 +505,14 @@ class MQBroker
             // Verificar si el AppID está suscrito al tema
             if (!suscriptores.ContainsKey(tema) || !suscriptores[tema].Contains(appId))
             {
+                Console.WriteLine($"No se encuentra suscrito al tema: {tema}");
                 return "ERROR|No está suscrito al tema: " + tema;
             }
 
             // Verificar si existe la cola y tiene mensajes
             if (!colasMensajes.ContainsKey(tema) || !colasMensajes[tema].ContainsKey(appId))
             {
+                Console.WriteLine($"Mensaje no encontrado - Tema: {tema}");
                 return "ERROR|Cola no encontrada";
             }
 
@@ -511,6 +520,7 @@ class MQBroker
 
             if (cola.Count == 0)
             {
+                Console.WriteLine($"No existen mensajes en cola del tema: {tema}");
                 return "ERROR|No hay mensajes en la cola";
             }
 

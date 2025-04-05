@@ -163,6 +163,7 @@ namespace MessageQueueClient
         }
 
         // Suscribe la aplicación a un tema específico
+        // Suscribe la aplicación a un tema específico
         public bool Subscribe(Topic topic)
         {
             if (topic == null)

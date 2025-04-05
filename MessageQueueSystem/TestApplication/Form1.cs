@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MessageQueueClient;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TestApplication
 {
@@ -29,9 +30,62 @@ namespace TestApplication
             appId = Guid.NewGuid();
             textBox3.Text = appId.ToString();
 
+
+
+            // Configurar ListView de suscripciones
+            listView1.View = View.Details;
+            listView1.FullRowSelect = true;
+            listView1.GridLines = true;
+            listView1.Columns.Add("Tema", 260);
+            listView1.Columns.Add("Estado", 102);
+
+            // En el método Initialize() o LoadSampleTopics():
+            comboBox1.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox1.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBox2.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox2.AutoCompleteSource = AutoCompleteSource.ListItems;
+            comboBox3.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox3.AutoCompleteSource = AutoCompleteSource.ListItems;
+
+            // Configurar ListView de mensajes recibidos
+            listView2.View = View.Details;
+            listView2.FullRowSelect = true;
+            listView2.Columns.Add("Tema", 80);
+            listView2.Columns.Add("Contenido", 180);
+            listView2.Columns.Add("Fecha/Hora", 102);
             // Estado inicial
             UpdateStatus("Desconectado");
+            EnableControls(false);
         }
+
+        private void LoadSampleTopics()
+        {
+            // Lista de 10 temas de ejemplo
+            string[] sampleTopics = new string[]
+            {
+        "Tema/Noticias/Deportes",
+        "Tema/Noticias/Tecnologia",
+        "Tema/Noticias/Finanzas",
+        "Tema/Sensores/Temperatura",
+        "Tema/Sensores/Humedad",
+        "Tema/Transacciones/Pagos",
+        "Tema/Transacciones/Reembolsos",
+        "Tema/Usuarios/Registros",
+        "Tema/Sistema/Alertas",
+        "Tema/Pruebas/Integracion"
+            };
+
+            // Limpiar y agregar temas al ComboBox de suscripción (textBox4 se reemplaza por comboBox3)
+            comboBox3.Items.AddRange(sampleTopics);
+            
+
+            // También agregar a los ComboBox de publicación y recepción
+            comboBox1.Items.AddRange(sampleTopics);
+            comboBox2.Items.AddRange(sampleTopics);
+        }
+
+
+        //BOTÓN DE CONEXIÓN AL PUERTO
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -44,7 +98,7 @@ namespace TestApplication
                     return;
                 }
 
-                if (!int.TryParse(textBox1.Text, out int port) || port <= 0 || port > 65534)
+                if (!int.TryParse(textBox2.Text, out int port) || port <= 0 || port > 65535)
                 {
                     MessageBox.Show("El puerto debe ser un número entre 1 y 65535", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -64,6 +118,9 @@ namespace TestApplication
 
                 UpdateStatus("Conectado");
                 LogMessage($"Conectado al broker en {ip}:{port} con AppID: {appId}");
+                // Cargar temas solo si la conexión es exitosa
+                LoadSampleTopics();
+                UpdateStatus("Conectado");
             }
             catch (Exception ex)
             {
@@ -73,62 +130,112 @@ namespace TestApplication
             }
         }
 
-        private void button2_Click_1(object sender, EventArgs e)
+        //BOTÓN DE SUBSCRIPCIÓN
+
+        private void button2_Click(object sender, EventArgs e)
         {
-            string topicName = textBox4.Text.Trim();
+            string topicName = comboBox3.Text.Trim();
+
             if (string.IsNullOrEmpty(topicName))
             {
-                MessageBox.Show("Debe ingresar un nombre de tema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Seleccione un tema primero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
                 Topic topic = new Topic(topicName);
-                bool result = client.Subscribe(topic);
+                bool success = client.Subscribe(topic);
 
-                if (result)
+                // Verificar si ya estaba suscrito localmente
+                if (subscribedTopics.ContainsKey(topicName) && subscribedTopics[topicName])
                 {
-                    // Agregar tema a la lista de suscritos si no existe
-                    if (!subscribedTopics.ContainsKey(topicName))
-                    {
-                        subscribedTopics[topicName] = true;
-
-                        // Agregar a ListView en lugar de DataGridView
-                        ListViewItem item = new ListViewItem(topicName);
-                        item.SubItems.Add("Suscrito");
-                        listView1.Items.Add(item);
-
-                        comboBox1.Items.Add(topicName);
-                        comboBox2.Items.Add(topicName);
-                    }
-
-                    LogMessage($"Suscrito al tema: {topicName}");
+                    MessageBox.Show($"Ya está suscrito al tema: {topicName}", "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LogMessage($"Intento de suscripción duplicada: {topicName}");
+                    return;
                 }
+
+                // Si llega aquí, es una suscripción nueva
+                UpdateSubscriptionList(topicName, "Suscrito");
+                subscribedTopics[topicName] = true;
+
+                // Agregar a los ComboBox si no existen
+                if (!comboBox1.Items.Contains(topicName))
+                    comboBox1.Items.Add(topicName);
+                if (!comboBox2.Items.Contains(topicName))
+                    comboBox2.Items.Add(topicName);
+
+                LogMessage($"Suscripción exitosa: {topicName}");
+                MessageBox.Show($"Suscrito exitosamente al tema: {topicName}", "Éxito",
+                              MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (MQSubscriptionException ex)
             {
-                MessageBox.Show($"Error al suscribirse: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.Message.Contains("Ya está suscrito"))
+                {
+                    MessageBox.Show($"Ya está suscrito al tema: {topicName}", "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Error al suscribirse: {ex.Message}", "Error",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 LogMessage($"Error de suscripción: {ex.Message}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error inesperado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LogMessage($"Error: {ex.Message}");
+                MessageBox.Show($"Error inesperado: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogMessage($"Error general: {ex.Message}");
             }
         }
 
+        
+
+        private void UpdateSubscriptionList(string topicName, string status)
+        {
+            // Buscar si el tema ya existe en el ListView
+            foreach (ListViewItem item in listView1.Items)
+            {
+                if (item.Text == topicName)
+                {
+                    item.SubItems[1].Text = status;
+                    return;
+                }
+            }
+
+            // Si no existe, agregarlo
+            ListViewItem newItem = new ListViewItem(topicName);
+            newItem.SubItems.Add(status);
+            listView1.Items.Add(newItem);
+        }
+
+
+        //BOTÓN DE DESUBSCRIPCIÓN
+
         private void button3_Click_1(object sender, EventArgs e)
         {
-            string topicName = textBox4.Text.Trim();
+            string topicName = comboBox3.Text.Trim();
+
             if (string.IsNullOrEmpty(topicName))
             {
-                MessageBox.Show("Debe ingresar un nombre de tema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe seleccionar un tema de la lista", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             try
             {
+                // Verificar primero si está suscrito localmente
+                if (!subscribedTopics.ContainsKey(topicName) || !subscribedTopics[topicName])
+                {
+                    MessageBox.Show($"No se encuentra suscrito al tema: {topicName}", "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LogMessage($"Intento de desuscripción fallido: No suscrito a {topicName}");
+                    return;
+                }
+
                 Topic topic = new Topic(topicName);
                 bool result = client.Unsubscribe(topic);
 
@@ -148,36 +255,49 @@ namespace TestApplication
                                 break;
                             }
                         }
-
-                        // Remover de los combos
-                        comboBox1.Items.Remove(topicName);
-                        comboBox2.Items.Remove(topicName);
                     }
 
                     LogMessage($"Desuscrito del tema: {topicName}");
+                    MessageBox.Show($"Desuscripción exitosa del tema: {topicName}", "Éxito",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (MQSubscriptionException ex)
             {
-                MessageBox.Show($"Error al desuscribirse: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.Message.Contains("No está suscrito"))
+                {
+                    MessageBox.Show($"No se encuentra suscrito al tema: {topicName}", "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Error al desuscribirse: {ex.Message}", "Error",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 LogMessage($"Error de desuscripción: {ex.Message}");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error inesperado: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error inesperado: {ex.Message}", "Error",
+                              MessageBoxButtons.OK, MessageBoxIcon.Error);
                 LogMessage($"Error: {ex.Message}");
             }
         }
 
+
+        //BOTÓN DE PUBLISH
+
         private void button4_Click(object sender, EventArgs e)
         {
-            if (comboBox1.SelectedItem == null)
+            // Obtener el tema directamente del texto del ComboBox
+            string topicName = comboBox1.Text.Trim(); // Cambiado de SelectedItem a Text
+
+            if (string.IsNullOrEmpty(topicName))
             {
-                MessageBox.Show("Debe seleccionar un tema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Debe ingresar un tema", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            string topicName = comboBox1.SelectedItem.ToString();
             string messageContent = richTextBox1.Text;
 
             try
@@ -191,6 +311,12 @@ namespace TestApplication
                     LogMessage($"Mensaje publicado en el tema: {topicName}");
                     label8.Text = "Resultado: Mensaje publicado exitosamente";
                     richTextBox1.Clear();
+
+                    // Opcional: agregar el tema a la lista si no existe
+                    if (!comboBox1.Items.Contains(topicName))
+                    {
+                        comboBox1.Items.Add(topicName);
+                    }
                 }
             }
             catch (MQPublishException ex)
@@ -204,6 +330,8 @@ namespace TestApplication
                 LogMessage($"Error: {ex.Message}");
             }
         }
+
+        //BOTÓN DE RECIEVE
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -269,7 +397,7 @@ namespace TestApplication
             button1.Enabled = !enabled;
 
             // Habilitar los controles de suscripción y publicación
-            textBox4.Enabled = enabled;
+            comboBox3.Enabled = enabled;
             button2.Enabled = enabled;
             button3.Enabled = enabled;
             comboBox1.Enabled = enabled;
@@ -297,6 +425,16 @@ namespace TestApplication
                     }
                 }
             }
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                string selectedTopic = listView1.SelectedItems[0].Text;
+                comboBox3.Text = selectedTopic;
+            }
+
         }
     }
 }

@@ -60,7 +60,7 @@
             columnHeader1 = new ColumnHeader();
             columnHeader2 = new ColumnHeader();
             label5 = new Label();
-            textBox4 = new TextBox();
+            comboBox3 = new ComboBox();
             groupBox5 = new GroupBox();
             richTextBox2 = new RichTextBox();
             tableLayoutPanel1.SuspendLayout();
@@ -80,13 +80,14 @@
             tableLayoutPanel1.Controls.Add(groupBox4, 1, 1);
             tableLayoutPanel1.Controls.Add(groupBox3, 0, 1);
             tableLayoutPanel1.Controls.Add(groupBox2, 1, 0);
-            tableLayoutPanel1.Location = new Point(12, 12);
+            tableLayoutPanel1.Location = new Point(14, 16);
+            tableLayoutPanel1.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 2;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel1.Size = new Size(760, 447);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel1.Size = new Size(869, 596);
             tableLayoutPanel1.TabIndex = 6;
             // 
             // groupBox1
@@ -100,9 +101,11 @@
             groupBox1.Controls.Add(textBox2);
             groupBox1.Controls.Add(textBox1);
             groupBox1.Font = new Font("Segoe UI", 9F);
-            groupBox1.Location = new Point(3, 3);
+            groupBox1.Location = new Point(3, 4);
+            groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(374, 217);
+            groupBox1.Padding = new Padding(3, 4, 3, 4);
+            groupBox1.Size = new Size(427, 289);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Connection Settings";
@@ -111,9 +114,9 @@
             // 
             label4.AutoSize = true;
             label4.ImeMode = ImeMode.NoControl;
-            label4.Location = new Point(0, 205);
+            label4.Location = new Point(0, 273);
             label4.Name = "label4";
-            label4.Size = new Size(48, 15);
+            label4.Size = new Size(61, 20);
             label4.TabIndex = 7;
             label4.Text = "Estado: ";
             // 
@@ -121,9 +124,9 @@
             // 
             label3.AutoSize = true;
             label3.ImeMode = ImeMode.NoControl;
-            label3.Location = new Point(88, 120);
+            label3.Location = new Point(101, 160);
             label3.Name = "label3";
-            label3.Size = new Size(43, 15);
+            label3.Size = new Size(55, 20);
             label3.TabIndex = 6;
             label3.Text = "AppID:";
             // 
@@ -131,26 +134,27 @@
             // 
             label2.AutoSize = true;
             label2.ImeMode = ImeMode.NoControl;
-            label2.Location = new Point(88, 87);
+            label2.Location = new Point(101, 116);
             label2.Name = "label2";
-            label2.Size = new Size(92, 15);
+            label2.Size = new Size(113, 20);
             label2.TabIndex = 5;
             label2.Text = "MQ Broker Port:";
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(185, 117);
+            textBox3.Location = new Point(211, 156);
+            textBox3.Margin = new Padding(3, 4, 3, 4);
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(100, 23);
+            textBox3.Size = new Size(114, 27);
             textBox3.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ImeMode = ImeMode.NoControl;
-            label1.Location = new Point(88, 55);
+            label1.Location = new Point(101, 73);
             label1.Name = "label1";
-            label1.Size = new Size(80, 15);
+            label1.Size = new Size(99, 20);
             label1.TabIndex = 3;
             label1.Text = "MQ Broker IP:";
             // 
@@ -159,9 +163,10 @@
             button1.BackColor = SystemColors.HotTrack;
             button1.ForeColor = SystemColors.ButtonHighlight;
             button1.ImeMode = ImeMode.NoControl;
-            button1.Location = new Point(146, 146);
+            button1.Location = new Point(167, 195);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(86, 31);
             button1.TabIndex = 2;
             button1.Text = "Connect";
             button1.UseVisualStyleBackColor = false;
@@ -169,17 +174,19 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(185, 84);
+            textBox2.Location = new Point(211, 112);
+            textBox2.Margin = new Padding(3, 4, 3, 4);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
+            textBox2.Size = new Size(114, 27);
             textBox2.TabIndex = 1;
             textBox2.Text = "5000";
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(185, 52);
+            textBox1.Location = new Point(211, 69);
+            textBox1.Margin = new Padding(3, 4, 3, 4);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 23);
+            textBox1.Size = new Size(114, 27);
             textBox1.TabIndex = 0;
             textBox1.Text = "127.0.0.1";
             // 
@@ -190,9 +197,11 @@
             groupBox4.Controls.Add(label9);
             groupBox4.Controls.Add(comboBox2);
             groupBox4.Font = new Font("Segoe UI", 9F);
-            groupBox4.Location = new Point(383, 226);
+            groupBox4.Location = new Point(437, 302);
+            groupBox4.Margin = new Padding(3, 4, 3, 4);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(374, 218);
+            groupBox4.Padding = new Padding(3, 4, 3, 4);
+            groupBox4.Size = new Size(427, 290);
             groupBox4.TabIndex = 3;
             groupBox4.TabStop = false;
             groupBox4.Text = "Receive Messages";
@@ -200,9 +209,10 @@
             // listView2
             // 
             listView2.Columns.AddRange(new ColumnHeader[] { columnHeader3, columnHeader4, columnHeader5 });
-            listView2.Location = new Point(6, 53);
+            listView2.Location = new Point(7, 71);
+            listView2.Margin = new Padding(3, 4, 3, 4);
             listView2.Name = "listView2";
-            listView2.Size = new Size(362, 161);
+            listView2.Size = new Size(413, 213);
             listView2.TabIndex = 3;
             listView2.UseCompatibleStateImageBehavior = false;
             listView2.View = View.Details;
@@ -227,9 +237,10 @@
             button5.BackColor = SystemColors.HotTrack;
             button5.ForeColor = SystemColors.ButtonHighlight;
             button5.ImeMode = ImeMode.NoControl;
-            button5.Location = new Point(293, 24);
+            button5.Location = new Point(335, 32);
+            button5.Margin = new Padding(3, 4, 3, 4);
             button5.Name = "button5";
-            button5.Size = new Size(75, 23);
+            button5.Size = new Size(86, 31);
             button5.TabIndex = 2;
             button5.Text = "Recibir";
             button5.UseVisualStyleBackColor = false;
@@ -239,18 +250,19 @@
             // 
             label9.AutoSize = true;
             label9.ImeMode = ImeMode.NoControl;
-            label9.Location = new Point(6, 27);
+            label9.Location = new Point(7, 36);
             label9.Name = "label9";
-            label9.Size = new Size(39, 15);
+            label9.Size = new Size(48, 20);
             label9.TabIndex = 1;
             label9.Text = "Tema:";
             // 
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(51, 24);
+            comboBox2.Location = new Point(58, 32);
+            comboBox2.Margin = new Padding(3, 4, 3, 4);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(236, 23);
+            comboBox2.Size = new Size(269, 28);
             comboBox2.TabIndex = 0;
             // 
             // groupBox3
@@ -262,9 +274,11 @@
             groupBox3.Controls.Add(richTextBox1);
             groupBox3.Controls.Add(comboBox1);
             groupBox3.Font = new Font("Segoe UI", 9F);
-            groupBox3.Location = new Point(3, 226);
+            groupBox3.Location = new Point(3, 302);
+            groupBox3.Margin = new Padding(3, 4, 3, 4);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(374, 218);
+            groupBox3.Padding = new Padding(3, 4, 3, 4);
+            groupBox3.Size = new Size(427, 290);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Publish Message";
@@ -273,9 +287,9 @@
             // 
             label8.AutoSize = true;
             label8.ImeMode = ImeMode.NoControl;
-            label8.Location = new Point(-3, 206);
+            label8.Location = new Point(-3, 275);
             label8.Name = "label8";
-            label8.Size = new Size(65, 15);
+            label8.Size = new Size(82, 20);
             label8.TabIndex = 1;
             label8.Text = "Resultado: ";
             // 
@@ -283,9 +297,9 @@
             // 
             label7.AutoSize = true;
             label7.ImeMode = ImeMode.NoControl;
-            label7.Location = new Point(6, 57);
+            label7.Location = new Point(7, 76);
             label7.Name = "label7";
-            label7.Size = new Size(159, 15);
+            label7.Size = new Size(199, 20);
             label7.TabIndex = 4;
             label7.Text = "Contenido de la publicación:";
             // 
@@ -293,9 +307,9 @@
             // 
             label6.AutoSize = true;
             label6.ImeMode = ImeMode.NoControl;
-            label6.Location = new Point(126, 28);
+            label6.Location = new Point(144, 37);
             label6.Name = "label6";
-            label6.Size = new Size(39, 15);
+            label6.Size = new Size(48, 20);
             label6.TabIndex = 3;
             label6.Text = "Tema:";
             // 
@@ -304,9 +318,10 @@
             button4.BackColor = SystemColors.HotTrack;
             button4.ForeColor = SystemColors.ButtonHighlight;
             button4.ImeMode = ImeMode.NoControl;
-            button4.Location = new Point(235, 195);
+            button4.Location = new Point(269, 260);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(75, 23);
+            button4.Size = new Size(86, 31);
             button4.TabIndex = 2;
             button4.Text = "Publicar";
             button4.UseVisualStyleBackColor = false;
@@ -314,18 +329,20 @@
             // 
             // richTextBox1
             // 
-            richTextBox1.Location = new Point(171, 57);
+            richTextBox1.Location = new Point(195, 76);
+            richTextBox1.Margin = new Padding(3, 4, 3, 4);
             richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(197, 132);
+            richTextBox1.Size = new Size(225, 175);
             richTextBox1.TabIndex = 1;
             richTextBox1.Text = "";
             // 
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(171, 24);
+            comboBox1.Location = new Point(195, 32);
+            comboBox1.Margin = new Padding(3, 4, 3, 4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(197, 23);
+            comboBox1.Size = new Size(225, 28);
             comboBox1.TabIndex = 0;
             // 
             // groupBox2
@@ -334,11 +351,13 @@
             groupBox2.Controls.Add(button2);
             groupBox2.Controls.Add(listView1);
             groupBox2.Controls.Add(label5);
-            groupBox2.Controls.Add(textBox4);
+            groupBox2.Controls.Add(comboBox3);
             groupBox2.Font = new Font("Segoe UI", 9F);
-            groupBox2.Location = new Point(383, 3);
+            groupBox2.Location = new Point(437, 4);
+            groupBox2.Margin = new Padding(3, 4, 3, 4);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(374, 217);
+            groupBox2.Padding = new Padding(3, 4, 3, 4);
+            groupBox2.Size = new Size(427, 289);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Topic Subscription";
@@ -348,9 +367,10 @@
             button3.BackColor = SystemColors.HotTrack;
             button3.ForeColor = SystemColors.ButtonHighlight;
             button3.ImeMode = ImeMode.NoControl;
-            button3.Location = new Point(284, 25);
+            button3.Location = new Point(325, 33);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(84, 23);
+            button3.Size = new Size(96, 31);
             button3.TabIndex = 4;
             button3.Text = "Desuscribirse";
             button3.UseVisualStyleBackColor = false;
@@ -361,23 +381,26 @@
             button2.BackColor = SystemColors.HotTrack;
             button2.ForeColor = SystemColors.ButtonHighlight;
             button2.ImeMode = ImeMode.NoControl;
-            button2.Location = new Point(203, 25);
+            button2.Location = new Point(232, 33);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(75, 23);
+            button2.Size = new Size(87, 31);
             button2.TabIndex = 3;
             button2.Text = "Suscribirse";
             button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click_1;
+            button2.Click += button2_Click;
             // 
             // listView1
             // 
             listView1.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2 });
-            listView1.Location = new Point(6, 54);
+            listView1.Location = new Point(7, 72);
+            listView1.Margin = new Padding(3, 4, 3, 4);
             listView1.Name = "listView1";
-            listView1.Size = new Size(362, 157);
+            listView1.Size = new Size(413, 208);
             listView1.TabIndex = 2;
             listView1.UseCompatibleStateImageBehavior = false;
             listView1.View = View.Details;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
             // 
             // columnHeader1
             // 
@@ -393,46 +416,52 @@
             // 
             label5.AutoSize = true;
             label5.ImeMode = ImeMode.NoControl;
-            label5.Location = new Point(6, 28);
+            label5.Location = new Point(7, 37);
             label5.Name = "label5";
-            label5.Size = new Size(42, 15);
+            label5.Size = new Size(52, 20);
             label5.TabIndex = 1;
             label5.Text = "Tema: ";
             // 
-            // textBox4
+            // comboBox3
             // 
-            textBox4.Location = new Point(51, 25);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(146, 23);
-            textBox4.TabIndex = 0;
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(58, 33);
+            comboBox3.Margin = new Padding(3, 4, 3, 4);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(168, 28);
+            comboBox3.TabIndex = 5;
             // 
             // groupBox5
             // 
             groupBox5.Controls.Add(richTextBox2);
-            groupBox5.Location = new Point(12, 465);
+            groupBox5.Location = new Point(14, 620);
+            groupBox5.Margin = new Padding(3, 4, 3, 4);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(760, 84);
+            groupBox5.Padding = new Padding(3, 4, 3, 4);
+            groupBox5.Size = new Size(869, 112);
             groupBox5.TabIndex = 7;
             groupBox5.TabStop = false;
             groupBox5.Text = "Log";
             // 
             // richTextBox2
             // 
-            richTextBox2.Location = new Point(6, 22);
+            richTextBox2.Location = new Point(7, 29);
+            richTextBox2.Margin = new Padding(3, 4, 3, 4);
             richTextBox2.Name = "richTextBox2";
             richTextBox2.ReadOnly = true;
-            richTextBox2.Size = new Size(745, 62);
+            richTextBox2.Size = new Size(851, 81);
             richTextBox2.TabIndex = 0;
             richTextBox2.Text = "";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(784, 561);
+            ClientSize = new Size(896, 748);
             Controls.Add(groupBox5);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
@@ -484,7 +513,7 @@
         private ColumnHeader columnHeader1;
         private ColumnHeader columnHeader2;
         private Label label5;
-        private TextBox textBox4;
+        private ComboBox comboBox3;
         private GroupBox groupBox5;
         private RichTextBox richTextBox2;
     }
